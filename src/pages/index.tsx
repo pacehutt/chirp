@@ -103,7 +103,7 @@ type PostWithUSer = RouterOutputs["posts"]["getAll"][number];
 const PostView = ({ post, author }: PostWithUSer) => {
   return (
     <div key={post.id} className="flex gap-4 border-b border-slate-400 p-5">
-      <Link href={`/@${author?.username}`}>
+      <Link href={`/@${author?.username || author.id}`}>
         <Image
           height={40}
           width={40}
@@ -115,8 +115,8 @@ const PostView = ({ post, author }: PostWithUSer) => {
 
       <div className="flex flex-col gap-1">
         <div className="font-bold-500 text-slate-500">
-          <Link href={`/@${author?.username}`}>
-            <span>@{author?.username}</span>
+          <Link href={`/@${author?.username || author.id}`}>
+            <span>@{author?.username || author.id}</span>
           </Link>
           <Link href={`/post/${post.id}`}>
             <span>· {dayjs(post.createdAt).fromNow()} </span>
